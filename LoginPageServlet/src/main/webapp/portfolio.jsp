@@ -51,7 +51,7 @@
             <div class="nav-items">
                 <a href="logout">Logout</a>
             </div>
-             <div class="nav-items">
+             <div class="nav-items color-green">
                 <a href="#"><%=session.getAttribute("name") %></a>
             </div>
             

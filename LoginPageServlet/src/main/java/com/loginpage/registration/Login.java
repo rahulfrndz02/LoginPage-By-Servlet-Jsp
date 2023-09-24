@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
 			if(rs.next()) {
 				session.setAttribute("name", rs.getString("name"));
 				dispatcher = request.getRequestDispatcher("portfolio.jsp");
+//				dispatcher = request.getRequestDispatcher("index.jsp");
 			}else {
 				request.setAttribute("status", "failed");
 				dispatcher = request.getRequestDispatcher("login.jsp");

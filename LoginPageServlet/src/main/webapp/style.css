@@ -45,6 +45,9 @@
     text-decoration: none;
     color: #f418f4;
 }
+.color-green a{
+    color: rgb(25, 252, 230);
+}
 
 /* main section */
 .container {
