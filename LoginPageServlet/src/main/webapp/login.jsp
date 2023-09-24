@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Sign Up Form by Colorlib</title>
+<title>Sign Up Form</title>
 
 <!-- Font Icon -->
 
@@ -35,7 +35,7 @@
 
 					<div class="signin-form">
 						<h2 class="form-title">Sign in</h2>
-						<form method="get" action="login" class="register-form"
+						<form method="post" action="login" class="register-form"
 							id="login-form">
 							<div class="form-group">
 								<label for="username"><i
@@ -88,9 +88,13 @@
 		var status = document.getElementById("status").value;
 		if(status == "failed"){
 			swal("Sorry! invalid username or password", "Login failed!");
+		}else{
+			
 		}
 
 </script>
+
+
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

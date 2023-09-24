@@ -17,41 +17,39 @@ import java.sql.SQLException;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = null;
-		Connection con = null;
-		String email = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginpageservlet", "root", "Rahul@1994");
-			PreparedStatement pst = con.prepareStatement("select * from users where email= ? and password=?");
-			pst.setString(1, email);
-			pst.setString(2, password);
-			
-			ResultSet rs = pst.executeQuery(); //bec it is a select statement so executeQuery()
-			
-			if(rs.next()) {
-				session.setAttribute("name", rs.getString("name"));
-				dispatcher = request.getRequestDispatcher("portfolio.jsp");
-//				dispatcher = request.getRequestDispatcher("index.jsp");
-			}else {
-				request.setAttribute("status", "failed");
-				dispatcher = request.getRequestDispatcher("login.jsp");
-			}
-			dispatcher.forward(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    private static final long serialVersionUID = 1L;
 
-	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        RequestDispatcher dispatcher = null;
+        Connection con = null;
+        String email = request.getParameter("username");
+        String password = request.getParameter("password");
+          
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/loginpageservlet", "root", "Rahul@1994");
+            PreparedStatement pst = con.prepareStatement("select * from users where email= ? and password=?");
+            pst.setString(1, email);
+            pst.setString(2, password);
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                session.setAttribute("name", rs.getString("name"));
+                dispatcher = request.getRequestDispatcher("blinkit.jsp");
+            } else {
+                request.setAttribute("status", "failed");
+                dispatcher = request.getRequestDispatcher("login.jsp");
+            }
+            dispatcher.forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
